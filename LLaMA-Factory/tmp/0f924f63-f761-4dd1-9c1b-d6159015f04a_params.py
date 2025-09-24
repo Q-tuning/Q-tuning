@@ -1,0 +1,57 @@
+datasets = [
+    [
+        dict(
+            abbr='openai_humaneval_1',
+            eval_cfg=dict(
+                evaluator=dict(type='opencompass.datasets.HumanEvalEvaluator'),
+                k=[
+                    1,
+                    10,
+                    100,
+                ],
+                pred_postprocessor=dict(
+                    type='opencompass.datasets.humaneval_postprocess_v2'),
+                pred_role='BOT'),
+            infer_cfg=dict(
+                inferencer=dict(
+                    max_out_len=512,
+                    type='opencompass.openicl.icl_inferencer.GenInferencer'),
+                prompt_template=dict(
+                    template=dict(round=[
+                        dict(
+                            prompt=
+                            'Complete the following python code:\n{prompt}',
+                            role='HUMAN'),
+                    ]),
+                    type=
+                    'opencompass.openicl.icl_prompt_template.PromptTemplate'),
+                retriever=dict(
+                    type='opencompass.openicl.icl_retriever.ZeroRetriever')),
+            path='opencompass/humaneval',
+            reader_cfg=dict(
+                input_columns=[
+                    'prompt',
+                ],
+                output_column='task_id',
+                test_range='[82:164]',
+                train_split='test'),
+            type='opencompass.datasets.HumanevalDataset'),
+    ],
+]
+models = [
+    dict(
+        abbr='random_random_1e-4_hf-vllm',
+        batch_size=8,
+        generation_kwargs=dict(stop_token_ids=None),
+        max_out_len=256,
+        max_seq_len=None,
+        model_kwargs=dict(
+            gpu_memory_utilization=0.95,
+            max_model_len=None,
+            tensor_parallel_size=4),
+        path=
+        '/mnt/public/gpfs-jd/data/wangshaobo/Data_Token_Pruning/checkpoints/wizard/mistral-7b/data_ratio_100/token_ratio_100/random_random_1e-4',
+        run_cfg=dict(num_gpus=4),
+        type='opencompass.models.vllm.VLLM'),
+]
+work_dir = '/mnt/public/gpfs-jd/data/wangshaobo/Data_Token_Pruning/checkpoints/wizard/mistral-7b/data_ratio_100/token_ratio_100/random_random_1e-4/results/humaneval_gen/20250911_013003'
