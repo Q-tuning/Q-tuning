@@ -21,6 +21,20 @@
 
     gtag('config', 'G-PYVRSFMDRL');
   </script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
   <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -65,54 +79,7 @@
           <div class="publication-authors">
               <!-- 作者列表 -->
             <div class="is-size-4 author-list">
-              <span class="author-block">
-                <a href="https://gszfwsb.github.io/" class="author-name">Shaobo Wang</a><sup class="affiliation">1</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Jiaming Wang</a><sup class="affiliation">2</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Jiajun Zhang</a><sup class="affiliation">3</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Cong Wang</a><sup class="affiliation">4</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Yue Min</a><sup class="affiliation">5</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Zichen Wen</a><sup class="affiliation">6</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Fei Huang</a><sup class="affiliation">7</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Huiqiang Jiang</a><sup class="affiliation">8</sup>
-              </span>
-              <span class="author-block">
-                <a href="" class="author-name">Linfeng Zhang</a><sup class="affiliation">1*</sup>
-              </span>
-            </div>
-          
-            <!-- 机构信息 -->
-            <div class="institutions is-size-5">
-              <span class="institution"><sup>1</sup>School of Artificial Intelligence, Shanghai Jiao Tong University</span><br>
-              <span class="institution"><sup>2</sup></span><br>
-              <span class="institution"><sup>3</sup></span><br>
-              <span class="institution"><sup>4</sup></span><br>
-              <span class="institution"><sup>5</sup></span><br>
-              <span class="institution"><sup>6</sup></span><br>
-              <span class="institution"><sup>7</sup></span><br>
-              <span class="institution"><sup>8</sup></span><br>
-            </div>
-          
-            <!-- 贡献说明 -->
-            <div class="contribution-notes is-size-5">
-              <span class="note"><sup>*</sup> Corresponding Author</span>
-            </div>
-            <div class="corresponding-authors is-size-5">
-              {shaobowang1009, zhanglinfeng}@sjtu.edu.cn
-            </div>
+            
           </div>
 
           <div class="column has-text-centered">
@@ -168,7 +135,7 @@
         </div>
     </br>
         <h2 class="subtitle has-text-centered">
-          <img src="images/pipeline.png" style="display: block; margin: 0 auto; width: 150%;"/>
+          <img src="images/method.png" style="display: block; margin: 0 auto; width: 150%;"/>
         </h2>
 
    </div>
@@ -237,7 +204,7 @@
                 </div>
               </div>
 
-              <div class="qa-row" style="display: flex; align-items: flex-start; gap: 0.5rem;">
+              <!-- <div class="qa-row" style="display: flex; align-items: flex-start; gap: 0.5rem;">
                 <div class="a-marker" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
                     <i class="fas fa-chart-bar fa-2x fa-fw" style="color: #1f6110;"></i>
                 </div>
@@ -245,7 +212,7 @@
                   <p>
                     <b>Experimental Results.</b> Experiments demonstrate that we are better than full-data training and all existing pruning baselines, consistently achieving superior performance while using significantly less data and computational resources. For instance, with LLaMA3-8B on GSM8K, Q-Tuning achieves 48.07 using only 35% of the data (surpassing full training by 6.0 and the best baseline by 9.9). </p>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
     </div>
@@ -260,22 +227,51 @@
     <div class="column">
       <h2 class="title is-3"><br>Method</h2>
       <div class="content has-text-justified">
-        <p>
-          paper content
-        </p>
-        <p>
-          paper content
-        </p>
-        <p>
-          paper content
-        </p>
-        <p>
-          paper content
-        </p>
         <p style="text-align: center;font-size: 1.2rem;">
-          <img src="picture.png" style="display: block; margin: 0 auto; width: 85%;"/>
+          <img src="images/pipeline.png" style="display: block; margin: 0 auto; width: 100%;"/>
         </p>
-          <img src="picture.png" style="display: block; margin: 0 auto; width: 85%;"/>
+        <p>
+          The <b>Error-Uncertainty (EU) Plane</b> is a diagnostic tool used to categorize each training sample based on two orthogonal metrics. 
+          The first axis is <b>Error</b>, quantified by perplexity ($\mathrm{PPL}$), which measures how surprising a ground-truth sequence is to the model. 
+          A high $\mathrm{PPL}$ suggests the model finds the data difficult or has a misconception. 
+          The formula is: 
+        </p>
+
+        <p>
+          \[
+          \mathrm{PPL}(x,y;f_\theta)=\exp\Bigg(\frac{\sum_{i\in T(x)} -\log p(y_i\mid x,y_{&lt;i};f_\theta)}{|T(x)|}\Bigg)
+          \]
+        </p>
+
+        <p>
+          The second axis is <b>Uncertainty</b>, quantified by predictive entropy ($\mathrm{Ent}$), which measures the model's indecision or how broadly it distributes its probability predictions, regardless of correctness. 
+          The formula is:
+        </p>
+
+        <p>
+          \[
+          \mathrm{Ent}(x,y;f_\theta)=\frac{\sum_{i\in T(x,y)}\Big(-\sum_{v\in\mathcal V}p(v\mid x,y_{&lt;i};f_\theta)\log p(v\mid x,y_{&lt;i};f_\theta)\Big)}{|T(x)|}
+          \]
+        </p>
+
+        <p>
+          By plotting each sample on this plane, the data is partitioned into four distinct quadrants, enabling a principled approach to data pruning.
+        </p>
+
+        <p>
+          <b>Sample-level pruning</b> is the first stage of the Q-Tuning method, which operates on the entire training batch. Using the EU Plane coordinates for each sample, this stage aims to discard uninformative data points entirely. Specifically, it discards samples that fall into the "Harmful Noise" (high error, low uncertainty) and "Redundant Knowledge" (low error, low uncertainty) quadrants. 
+          To achieve a target sample retention ratio, $r_{\text{sample}}$, a bisect search algorithm dynamically determines the quantile thresholds for perplexity and entropy that correctly partition the batch. 
+          Only samples identified as "Valuable Misconceptions" (high error, low uncertainty) and "Calibration Data" (high error, high uncertainty) are kept for the next stage of processing.
+        </p>
+
+        <p>
+          <b>Token-level pruning</b> is the second, more granular stage that is selectively applied only to the samples classified as "Valuable Misconceptions" (Q2) from the previous stage. The goal is to isolate the useful learning signal within these samples by removing locally detrimental or noisy tokens. 
+          For each token, a smoothed importance score, $s_i$, is calculated, which considers both the token's own perplexity and that of its immediate neighbors, preventing the accidental removal of critical tokens that have isolated perplexity spikes. 
+          The formula is: 
+          $$s_i(x,y;f_\theta)=(1-\lambda)\,\mathrm{PPL}_i(x,y;f_\theta)+\lambda\big[\mathrm{PPL}_{i-1}(x,y;f_\theta)+\mathrm{PPL}_{i+1}(x,y;f_\theta)\big]$$
+          Tokens are then ranked by this score, and only the top-$r_{\textrm{token}}$ fraction are retained for the training update. 
+          Samples classified as "Calibration Data" (Q4) are exempt from this process and are preserved in their entirety.
+        </p>
 
       </div>
     </div>
@@ -295,18 +291,18 @@
         <div class="content has-text-justified">
           <ol>
             <li>
-Q-Tuning often matches or surpasses full-dataset fine-tuning while using only a fraction of the training budget. On LLaMA2-7B, with 25\% of the samples and 70\% of the tokens, Q-Tuning achieves 36.9, closely matching the full-data baseline. On Mistral-7B, the same budget yields 46.2, slightly higher than the full-data result.      </li> 
+Q-Tuning often matches or surpasses full-dataset fine-tuning while using only a fraction of the training budget. On LLaMA2-7B, with 25% of the samples and 70% of the tokens, Q-Tuning achieves 36.9, closely matching the full-data baseline. On Mistral-7B, the same budget yields 46.2, slightly higher than the full-data result.  </li> 
                   <!-- <img src="picture.png" style="display: block; margin: 0 auto; width: 85%;"/> -->
 
 
           <li>
-When compared with methods such as InfoBatch, PPL, and SparseVLM, Q-Tuning achieves higher accuracy under the same budgets. For example, with 25\% samples and 50\% tokens, it improves LLaMA2-7B to 36.5, well above the best baseline. On Mistral-7B under the same setting, Q-Tuning exceeds the strongest baseline by 1.63\%.     </li>          
+When compared with methods such as InfoBatch, PPL, and SparseVLM, Q-Tuning achieves higher accuracy under the same budgets. For example, with 25% samples and 50% tokens, it improves LLaMA2-7B to 36.5, well above the best baseline. On Mistral-7B under the same setting, Q-Tuning exceeds the strongest baseline by 1.63%.  </li>          
                   <!-- <img src="picture.png" style="display: block; margin: 0 auto; width: 85%;"/> -->
                   <!-- <iframe src="images/page_6.pdf" width="800" height="500" style="margin-left: 100px;"></iframe> -->
 
           </li>
           <li>
-The advantages of Q-Tuning are consistent across model families and pruning ratios. With 12.5\% samples and 50\% tokens, it outperforms the best pruning baselines by 3.3 points on LLaMA2-7B and 2.7 points on Mistral-7B. At larger budgets with 50\% samples and 70\% tokens, Q-Tuning further widens the margin, exceeding the strongest baselines by 2.4 and 3.7 points, respectively, while closely matching full-dataset performance.</li>
+The advantages of Q-Tuning are consistent across model families and pruning ratios. With 12.5% samples and 50% tokens, it outperforms the best pruning baselines by 3.3 points on LLaMA2-7B and 2.7 points on Mistral-7B. At larger budgets with 50% samples and 70% tokens, Q-Tuning further widens the margin, exceeding the strongest baselines by 2.4 and 3.7 points, respectively, while closely matching full-dataset performance.</li>
                   <!-- <iframe src="images/page_6.pdf" width="800" height="500" style="margin-left: 100px;"></iframe> -->
                   <img src="images/Q_Tuning61.svg" style="display: block; margin: 0 auto; width: 85%;"/>
 
@@ -330,17 +326,17 @@ The advantages of Q-Tuning are consistent across model families and pruning rati
 
         <div class="content has-text-justified">
           <ol>
-            Can Q-Tuning Outperform Other Methods in Independent Sample and Token Pruning? We conducted ablation studies to evaluate the effectiveness of each pruning strategy on its own. Figure ablation provides a direct comparison: panel (a) shows dynamic sample pruning with all tokens retained, while panel (b) shows dynamic token pruning with all samples retained. In both cases, Q-Tuning consistently outperforms all baseline methods, demonstrating the advantage of coordinating sample and token pruning rather than applying them independently.
+            <strong><b>Can Q-Tuning Outperform Other Methods in Independent Sample and Token Pruning?</b></strong> We conducted ablation studies to evaluate the effectiveness of each pruning strategy on its own. Figure as follow provides a direct comparison: panel (a) shows dynamic sample pruning with all tokens retained, while panel (b) shows dynamic token pruning with all samples retained. In both cases, Q-Tuning consistently outperforms all baseline methods, demonstrating the advantage of coordinating sample and token pruning rather than applying them independently.
                   <img src="images/ablation_100.png" style="display: block; margin: 0 auto; width: 100%;"/>
           </ol>
         </div>
         <div class="content has-text-justified">
           <ol>
-            content
-                  <img src="picture.png" style="display: block; margin: 0 auto; width: 100%;"/>
-            <p style="font-size: 1.2rem;">
+            <strong><b>Effectiveness of context awareness λ.</b></strong> We examined the impact of the coefficient λ, which controls neighbor awareness. Moderate values of λ improved performance on GSM8K and SQuAD, while extreme values led to diminishing or unstable gains. In contrast, TriviaQA showed little sensitivity to λ, with performance remaining stable across all settings. These results suggest that Q-Tuning benefits from incorporating neighbor awareness, but only up to a moderate level, beyond which the gains become marginal.
+                  <img src="images/ablation_supp.png" style="display: block; margin: 0 auto; width: 100%;"/>
+            <!-- <p style="font-size: 1.2rem;">
               content
-            </p>
+            </p> -->
 
           </ol>
         </div>
@@ -361,10 +357,6 @@ The advantages of Q-Tuning are consistent across model families and pruning rati
             <!-- <li> -->
               <b>This work successfully transforms the high-risk endeavor of dynamic data pruning for LLM fine-tuning from a speculative gamble into a reliable, high-performance strategy. By diagnosing the failure modes of naive, one-dimensional heuristics through the novel Error-Uncertainty Plane, we reveal the heterogeneous value of data and the critical need for a nuanced approach. Our proposed Quadrant-based Tuning (Q-Tuning) directly addresses this by implementing a principled, two-stage framework that intelligently coordinates sample-level and token-level pruning decisions based on the diagnostic insights of the EU Plane. This integrated strategy surgically removes harmful or redundant data while preserving and enhancing valuable learning signals, thereby achieving unprecedented efficiency without sacrificing—and often even improving upon—model performance, effectively turning the pruning gamble into a consistently winning bet.</b>
             <!-- </li> -->
-
-            <!-- <li>
-              <b>content</b>
-            </li> -->
 
           </ol>
         </div>
