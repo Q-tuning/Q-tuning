@@ -232,7 +232,7 @@
         </p>
         <p>
           The <b>Error-Uncertainty (EU) Plane</b> is a diagnostic tool used to categorize each training sample based on two orthogonal metrics. 
-          The first axis is <b>Error</b>, quantified by perplexity ($\mathrm{PPL}$), which measures how surprising a ground-truth sequence is to the model. 
+          The first axis is error, quantified by perplexity ($\mathrm{PPL}$), which measures how surprising a ground-truth sequence is to the model. 
           A high $\mathrm{PPL}$ suggests the model finds the data difficult or has a misconception. 
           The formula is: 
         </p>
@@ -244,7 +244,7 @@
         </p>
 
         <p>
-          The second axis is <b>Uncertainty</b>, quantified by predictive entropy ($\mathrm{Ent}$), which measures the model's indecision or how broadly it distributes its probability predictions, regardless of correctness. 
+          The second axis is uncertainty, quantified by predictive entropy ($\mathrm{Ent}$), which measures the model's indecision or how broadly it distributes its probability predictions, regardless of correctness. 
           The formula is:
         </p>
 
@@ -307,6 +307,19 @@ The advantages of Q-Tuning are consistent across model families and pruning rati
                   <img src="images/Q_Tuning61.svg" style="display: block; margin: 0 auto; width: 85%;"/>
 
           </li>
+          <li>
+Q-Tuning delivers consistent gains across reasoning benchmarks. On GSM8K, it largely improves LLaMA3-8B, Mistral-7B, and SmolLM-1.7B under the 25% × 70% budget, all surpassing their full-data counterparts. On the more challenging MATH benchmark, Q-Tuning also exceeds the strongest baselines on both LLaMA3-8B and Mistral-7B.
+          </li>
+          <li>
+Q-Tuning scales reliably across model sizes. Averaged over GSM8K and MATH, it reaches 21.5 on LLaMA3-8B, 26.6 on Mistral-7B, and 11.8 on SmolLM-1.7B, all notably higher than their full-dataset counterparts.            
+                  <img src="images/Q_Tuning62.svg" style="display: block; margin: 0 auto; width: 85%;"/>          
+          </li>
+          <!-- <li>
+            
+          </li>
+          <li>
+            
+          </li> -->
           </ol>
         </div>
       </div>
