@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="The Pruning Gamble: Why Naive Data and Token Pruning is a Losing Bet, and How to Win with a Quadrant-based Strategy"> 
+        content="Winning the Pruning Gamble: A Unified Approach to Joint Sample and Token Pruning for Efficient Supervised Fine-Tuning"> 
   <meta name="keywords" content=" Data Pruning, Token Pruning, Large Language Model"> <!-- TODO: add some keywords for search engine -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Pruning Gamble: Why Naive Data and Token Pruning is a Losing Bet, and How to Win with a Quadrant-based Strategy</title>
+  <title>Winning the Pruning Gamble: A Unified Approach to Joint Sample and Token Pruning for Efficient Supervised Fine-Tuning</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -73,7 +73,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">
-            The Pruning Gamble: Why Naive Data and Token Pruning is a Losing Bet, and How to Win with a Quadrant-based Strategy
+            Winning the Pruning Gamble: A Unified Approach to Joint Sample and Token Pruning for Efficient Supervised Fine-Tuning
           </h1>
 
           <div class="publication-authors">
@@ -129,7 +129,7 @@
     <div class="columns is-centered">
       <div class="column">
         <p>
-            <strong>TL;DR:</strong> We propose Quadrant-based Tuning (Q-Tuning), which leverages the Error-Uncertainty (EU) Plane to diagnose and address issues in data and token pruning for SFT. Q-Tuning dynamically retains high-value samples at the data level and applies a differentiated token-level pruning strategy. Experiments show that Q-Tuning significantly accelerates training while achieving performance comparable to or better than full-data baselines.
+            <strong>TL;DR:</strong> As supervised fine-tuning (SFT) evolves from a lightweight post-training step into a compute-intensive phase rivaling mid-training in scale, data efficiency has become critical for aligning large language models (LLMs) under tight budgets. Existing data pruning methods suffer from a fragmented design: they operate either at the sample level or the token level in isolation, failing to jointly optimize both dimensions. This disconnect leads to significant inefficiencies—high-value samples may still contain redundant tokens, while token-level pruning often discards crucial instructional or corrective signals embedded in individual examples. To address this bottleneck, we introduce the Error–Uncertainty (EU) Plane, a diagnostic framework that jointly characterizes the heterogeneous utility of training data across samples and tokens. Guided by this insight, we propose Quadrant-based Tuning (Q-Tuning), a unified framework that strategically coordinates sample pruning and token pruning. Q-Tuning employs a two-stage strategy: first, it performs sample-level triage to retain examples rich in informative misconceptions or calibration signals; second, it applies an asymmetric token-pruning policy, using a context-aware scoring mechanism to trim less salient tokens exclusively from misconception samples while preserving calibration samples in their entirety. Our method sets a new state of the art across five diverse benchmarks. Remarkably, on SmolLM2-1.7B, Q-Tuning achieves a +38% average improvement over the full-data SFT baseline using only 12.5% of the original training data. As the first dynamic pruning approach to consistently outperform full-data training, Q-Tuning provides a practical and scalable blueprint for maximizing data utilization in budget-constrained LLM SFT. 
         </p>
         </div>
         </div>
