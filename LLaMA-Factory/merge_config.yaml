@@ -1,9 +1,0 @@
-model_name_or_path: /net/scratch/zhaorun/shaobo/Data_Token_Pruning/base/Meta-Llama-3-8B
-adapter_name_or_path: ..//saves/alpaca/Meta-Llama-3-8B/data_ratio=1/token_ratio=100/deita2_random_5e-5
-template: llama3
-finetuning_type: lora
-
-export_dir: ..//checkpoints/alpaca/Meta-Llama-3-8B/data_ratio=1/token_ratio=100/deita2_random_5e-5
-export_size: 2
-export_device: cpu
-export_legacy_format: false
